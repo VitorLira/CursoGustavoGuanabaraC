@@ -1,0 +1,201 @@
+
+# Comandos Básicos:
+
+	\n -> Nova linha
+	\t -> Tabulação
+	\b -> Backspace
+	\r -> Retorno
+	\\ -> Barra
+	\" -> Aspas
+	\? -> Interrogação
+	\a -> Beep
+	%% -> Porcentagem
+
+# Comentarios:
+ 
+	// -> comenta uma linha
+	/* -> comenta deversas linhas -> tem que ser finalizado
+
+# Tipos Primitivos:
+
+	char -> caracteres
+	int  -> números inteiros
+	float -> números com casas decimais
+	double -> números com casas decimais (possibilidade de números maiores que o float possa aguentar)
+	void -> retorna vazio.
+
+# Formatações:
+
+	%d / %i  -> int
+	%f  -> float / double
+	%c  -> char
+	%s  -> cadeia de caracteres
+	%e  -> notação
+	%hd -> short int
+	%ld -> long int
+	%hu -> unsigned short
+	%u  -> unsigned
+	%lu -> unsigned long
+
+# Define VS Const:
+
+	#define -> é uma diretiva de pré-processamento
+	const -> é uma plavra reservada do C
+	- Com #define, o valor é subtituído antes da compilação
+	- Com const, a constante existe na memória
+	- Com const é possível indicar o tipo primitivo da constante
+
+# Entrada de dados:
+
+	scanf("%?", ); -> comando universal para capturar entrada de dados
+	fflush(stdin); -> comando para limpar o buffer do teclado
+	variavél = getchar(); -> comando para capturar apenas uma unica letra.
+	gets(variável) -> comando para capturar strings, obs: conjunto de caracteres.
+
+# Números Aleatorios:
+	
+	rand(); -> comando para gerar um numero aleatorio.
+ 
+ - porem para iniciar o comando se utiliza de alguns artifícios. primerio temos que importar a biblioteca - time.h
+ - e depois temos que inicializar o comando com o 's' a frente -> srand(time(NULL)); o valor de time tem que ser nulo
+	
+	ex: srand(time(NULL));
+	    int n = rand(); <- aqui 'n' ira receber um valor aleadorio, para definir um valor segue exemplo abaixo
+	
+	ex²: srand(time(NULL));
+	     int n = rand() % 10; <- aqui irá retornar um número entre 0 e 9, e não entre 1 e 10.
+ 
+ - para definir um ranger para a randomização segue exemplo:
+	ex³: srand(time(NULL));
+	     int n = rand() % 50 + 1; <- aqui irá retornar um número entre 1 e 50; define o renge que vc quer e soma com o número inicial desejado.	
+
+# Operadores:
+
+  tipos de Operadores:
+     Aritméticos:
+	+  -> adição
+	-  -> subtração
+	*  -> multiplicação
+	/  -> divisão
+	%  -> módulo
+
+     Casting:
+	para converter um tipo primitivo para outro se coloca a referencia entre parenteses antes:
+	- ex: int i=10; float k;
+	k = (float) i / 3; 			
+
+     Atribuição
+	apenas quando uma variável for receber ela mesma mais um outro valor.
+	
+	x += valor/variável <- x vai receber ele mesmo mais o valor ou variável informada
+	x *= valor/variável <- x vai receber ele mesmo vezes o valor ou variável informada
+	x /= valor/variável <- x vai recever ele mesmo dividido pelo valor ou variável informada
+	x %= valor/variável <- x vai receber ele mesmo mais 
+
+     Incremento e decremento :
+	obs: pode vim antes ou após a variável na qual quer incrementar, o que vale e se quer ser encrementado antes ou depois de ser executado.	
+
+	++  -> irá adicionar 1 por ciclo
+ 	--  -> irá subtrair 1 por ciclo
+
+     Relacionais:
+	==  -> igual
+	!=  -> diferente
+	>   -> maior que
+	<   -> menor que
+	>=  -> maior ou igual a
+	<=  -> menor ou igual a 
+
+	sempre retorna um valor lógico 'True' ou 'False'; ou também pode ser, 1 ou 0.
+
+	? <-  ternario
+	- irá apresentar uma das duas opções, dependendo da operação lógica dentro dos parenteses.
+	()?"opc1":"opc2"
+
+     Lógicos:
+	
+	ordem de precedência de cima para baixo.
+
+	!  -> Negação (not) <- retorna o contrário, se for True -> retorna - False, se for False -> retorna True
+      	&&  -> Consjunção (and) <- todas as condições tem quer ser verdadeiro para dar um retorno - True, caso 1 seja False, retorna False.
+      	||  -> Disjunção (or) <- basta que um seja verdadeiro para retornar - True, retorna False, se todas forem - False.
+     
+	 		
+     Bitwise ou (bit a bit):
+	
+	&  -> Conjunção (and)
+	|  -> Disjunção (or)
+	^  -> Disjunção Exclusiva (se um for verdadeiro e o outro não retorna - True) se ambos forem verdadeiros ou falsos, irá retornar - False 
+       >>  -> Right Shift
+       <<  -> Left Shift
+
+# Operadores com Strings:
+  obs: para todos os metodos abaixo tem que importar a biblioteca <string.h>
+	
+	strcpy(variável, "texto"); <- fara com que a variável informada receba o texto indicado.
+
+	strlen(); <- informa a quantidade de caracteres de uma string, porem tem que ser armazenada em uma outra variável
+	- ex: int tam = strlen(variávelString);
+
+	strcmp(); <- informa se as strings informadas são iguais, potem trazer três respostas, são elas (-1, 0 ou 1 ), porem tem que ser armazenada em uma outra variável
+		  -1(quando a 1º for maior) 0(quando forem iguais) 1(quando a 2º for maior)
+	- ex: int tam = strcmp(var1, var2);
+
+	strcat(); <- esta função concatena 2 string, na hora de imprimir ou adicionar em outra variável.
+	- ex: printf("%s", strcat(nome, sobrenome)); 
+
+	strupr(); <- converte todas as letras de uma string para Maiúsculo
+	- ex: printf("%s", atrupr(variávelString));	
+
+	strlwr(); <- converte todas as letras de uma string para Minpusculo
+	- ex: printf("%s", atrlwr(variávelString));
+
+# Capturando a Data & Hora do sistema
+	- tem que importar a biblioteca - <time.h>
+
+	 
+	time(&t);
+
+	struct tm *data;
+	data = localtime(&t);
+
+	int d = data->tm_mday;
+
+  - as variáveis dentro da struct tm são as sequintes.
+	OBS: para mostrar as informações que começão em 0 corretamente, adcione +1.
+	
+	tm_mday  -> dia do mês [vai do dia 1 ao dia 31]
+	tm_mon   -> Mês [começa no mês 0 e vai ate o mês 11]
+	tm_year  -> ano [a partir de 1900] tem que somar 1900 a variável que recebera o ano.
+	tm_wday  -> dia da semana [0 a 6] 0 é dommingo
+	tm_yday  -> dia do ano [0 a 365]
+	tm_hour  -> hora [0 a 23]
+	tm_min   -> minutos [0-59]
+	tm_sec   -> segundos [0-59]
+
+# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
